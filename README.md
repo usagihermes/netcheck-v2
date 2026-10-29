@@ -2,7 +2,7 @@
 
 A beautiful, privacy-focused network diagnostic tool that runs entirely in your browser.
 
-**v2 Updates:** Official Saint Joseph's University branding (maroon palette, serif headings, structured layout, gold accents) — authorized for this project. Includes a new free-form data input area for custom scan notes, integrated into CSV and PDF exports.
+**v2 Updates:** SJU design elements — maroon palette, serif headings, structured layout. Includes a new free-form data input area for custom scan notes, integrated into CSV and PDF exports.
 
 **[🌐 Launch NetCheck](https://usagihermes.github.io/netcheck-v2)**
 
