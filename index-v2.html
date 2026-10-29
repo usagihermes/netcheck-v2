@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>usagi-chan NetCheck v2 🌸 · SJU-Inspired Design Reference</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* SJU-inspired design reference — visually inspired by the university branding page,
+     not official university branding. Colors and typography are approximate references
+     only; no protected logos, fonts, or official assets copied. */
+  --sju-maroon: #8A1B3A;
+  --sju-maroon-dark: #6E1528;
+  --sju-cream: #F5F0EB;
+  --sju-paper: #FAF8F2;
+  --sju-charcoal: #1A1A24;
+  --sju-stone: #4A4A5A;
+  --sju-sand: #D6CFC7;
+  --sju-gold: #BFA15F;
+  --surface: #FAF8F2;
+  --surface-deep: #F5F0EB;
+  --text: #1A1A24;
+  --text-dim: #6E6E7A;
+  --accent: var(--sju-maroon);
+  --accent-soft: rgba(138, 27, 58, 0.08);
+  --border: #E5DED5;
+  --glow: rgba(138, 27, 58, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--surface);
+  color: var(--text);
+  font-family: 'Inter', 'Cormorant Garamond', Georgia, serif;
+  min-height: 100vh;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+/* Subtle paper texture (CSS-only, no image assets) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(138,27,58,0.015) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, rgba(191,161,95,0.015) 1px, transparent 1px);
+  background-size: 120px 120px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 48px 28px 60px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Branding reference banner */
+.brand-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: var(--sju-maroon);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  margin-bottom: 36px;
+  opacity: 0.92;
+  box-shadow: 0 4px 18px rgba(138,27,58,0.15);
+}
+
+/* Header — SJU-inspired: serif title + clean subtitle */
+.header {
+  text-align: center;
+  margin-bottom: 52px;
+  animation: fadeInDown 0.7s ease;
+}
+
+.header h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 10px;
+  text-wrap: balance;
+}
+
+.header h1 .v2-badge {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sju-maroon);
+  vertical-align: super;
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+}
+
+.header .subtitle {
+  font-family: 'Cormorant Garamond', 'Inter', serif;
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 6px;
+}
+
+.header .sub-note {
+  font-size: 0.82rem;
+  color: var(--sju-stone);
+  letter-spacing: 0.02em;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Maroon decorative line */
+.scan-line {
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--sju-maroon) 40%, var(--sju-gold) 60%, transparent 100%);
+  border-radius: 3px;
+  margin: 28px 0 36px;
+  animation: scanPulse 2.2s ease-in-out infinite;
+  opacity: 0.55;
+}
+
+@keyframes scanPulse {
+  0%, 100% { opacity: 0.35; transform: scaleX(0.92); }
+  50% { opacity: 0.65; transform: scaleX(1); }
+}
+
+/* Cards — refined, paper-like with subtle shadow */
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 12px rgba(138,27,58,0.04), 0 1px 4px rgba(0,0,0,0.02);
+  animation: fadeInUp 0.55s ease both;
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+
+.card:hover {
+  border-color: rgba(138,27,58,0.2);
+  box-shadow: 0 8px 28px rgba(138,27,58,0.08), 0 2px 6px rgba(0,0,0,0.03);
+}
+
+.card:nth-child(1) { animation-delay: 0.08s; }
+.card:nth-child(2) { animation-delay: 0.14s; }
+.card:nth-child(3) { animation-delay: 0.2s; }
+.card:nth-child(4) { animation-delay: 0.26s; }
+.card:nth-child(5) { animation-delay: 0.32s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Card icons with maroon / gold palette (design reference only) */
+.card-icon {
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(138,27,58,0.1);
+}
+
+/* SJU-inspired: maroon + gold accents, no protected assets */
+.icon-maroon  { background: linear-gradient(135deg, var(--sju-maroon), var(--sju-maroon-dark)); color: #fff; }
+.icon-gold   { background: linear-gradient(135deg, #F0E6CF, #D6BF99); color: #5A3E1B; }
+.icon-paper { background: #F5F0EB; color: var(--sju-charcoal); border: 1px solid var(--border); }
+
+.card-title {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+/* Data rows — refined typography */
+.data-grid {
+  display: grid;
+  gap: 3px;
+}
+
+.data-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 14px;
+  background: var(--surface-deep);
+  border-radius: 9px;
+  transition: background 0.2s;
+}
+
+.data-row:hover {
+  background: rgba(138,27,58,0.035);
+}
+
+.data-label {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  flex-shrink: 0;
+  min-width: 150px;
+  padding-top: 1px;
+  letter-spacing: 0.01em;
+}
+
+.data-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.86rem;
+  color: var(--text);
+  text-align: right;
+  word-break: break-all;
+  max-width: 62%;
+}
+
+.data-value.highlight { color: var(--accent); font-weight: 600; }
+.data-value.loading { color: var(--text-dim); animation: pulse 1.5s ease-in-out infinite; }
+
+/* Badge updates — design reference colors */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+.badge-green { background: rgba(138,27,58,0.06); color: var(--sju-maroon); border-color: rgba(138,27,58,0.15); }
+.badge-gold  { background: rgba(191,161,95,0.08); color: #7A5E28; border-color: rgba(191,161,95,0.2); }
+.badge-paper{ background: #fff; color: var(--text); border-color: var(--border); }
+
+.status-dot {
+  display: inline-block;
+  width: 7px; height: 7px; border-radius: 50%;
+  margin-right: 6px; vertical-align: middle;
+}
+.status-dot.green { background: var(--sju-maroon); box-shadow: 0 0 4px rgba(138,27,58,0.3); }
+.status-dot.yellow { background: var(--sju-gold); box-shadow: 0 0 4px rgba(191,161,95,0.4); }
+.status-dot.red { background: var(--sju-maroon); box-shadow: 0 0 4px rgba(138,27,58,0.25); }
+.status-dot.gray { background: var(--text-dim); }
+
+/* Quality / speed bars */
+.quality-bar { height: 8px; border-radius: 4px; background: var(--surface-deep); overflow: hidden; margin-top: 8px; border: 1px solid var(--border); }
+.quality-fill { height: 100%; border-radius: 3px; transition: width 0.5s ease, background 0.3s; background: var(--sju-maroon); }
+.quality-label { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-dim); margin-top: 5px; font-family: 'JetBrains Mono', monospace; }
+
+/* Export buttons — refined */
+.export-bar {
+  display: flex; gap: 14px; justify-content: center;
+  margin: 28px 0 32px; flex-wrap: wrap;
+}
+
+.export-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 11px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: #fff; color: var(--text);
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(138,27,58,0.03);
+}
+
+.export-btn:hover {
+  border-color: var(--sju-maroon);
+  box-shadow: 0 6px 20px rgba(138,27,58,0.08);
+  transform: translateY(-2px);
+}
+
+.export-btn.pdf { border-color: rgba(191,161,95,0.25); color: #5A3E1B; }
+.export-btn.pdf:hover { box-shadow: 0 6px 20px rgba(191,161,95,0.1); border-color: var(--sju-gold); }
+.export-btn.csv { border-color: rgba(138,27,58,0.2); color: var(--sju-maroon); }
+.export-btn.csv:hover { box-shadow: 0 6px 20px rgba(138,27,58,0.1); border-color: var(--sju-maroon); }
+
+/* Footer — university-style clean footer */
+.footer {
+  text-align: center; margin-top: 48px;
+  padding-top: 28px; border-top: 2px solid var(--sju-maroon);
+  color: var(--text-dim); font-size: 0.82rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: 0.01em;
+}
+
+.footer strong { color: var(--sju-maroon); font-weight: 700; }
+
+/* NEW: Free-form data input area (v2 feature) */
+.free-form-card { margin-top: 28px; }
+
+.free-form-label {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.05rem; font-weight: 600; color: var(--text);
+  margin-bottom: 8px; letter-spacing: -0.01em;
+}
+
+.free-form-sub {
+  font-size: 0.78rem; color: var(--text-dim); margin-bottom: 14px;
+}
+
+.free-form-textarea {
+  width: 100%;
+  min-height: 120px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--border);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.88rem;
+  resize: vertical;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+
+.free-form-textarea:focus {
+  outline: none;
+  border-color: var(--sju-maroon);
+  box-shadow: 0 0 0 3px rgba(138,27,58,0.08);
+}
+
+.free-form-textarea::placeholder {
+  color: var(--text-dim); font-style: italic;
+}
+
+/* Brand design note banner */
+.design-note-banner {
+  background: var(--surface-deep);
+  border-left: 3px solid var(--sju-gold);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin-top: 28px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container { padding: 28px 18px 48px; }
+  .header h1 { font-size: 2.2rem; }
+  .header .v2-badge { font-size: 0.85rem; }
+  .free-form-textarea { min-height: 100px; }
+  .brand-banner { font-size: 0.6rem; padding: 5px 10px; }
+  .card { padding: 20px; }
+}
+
+/* Timestamp */
+.timestamp {
+  text-align: center; color: var(--text-dim);
+  font-size: 0.78rem; margin-bottom: 28px;
+  font-family: 'JetBrains Mono', monospace; letter-spacing: 0.01em;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Brand reference banner — clearly marked as design reference -->
+  <div class="brand-banner" aria-label="Brand design reference">
+    SJU-Inspired Design Reference · Not Official University Branding
+  </div>
+
+  <div class="header">
+    <h1>usagi-chan NetCheck <span class="v2-badge">v2</span></h1>
+    <p class="subtitle">A design-reference update — inspired by Saint Joseph's University branding elements</p>
+    <p class="sub-note">Design reference only — no protected university logos, fonts, or official brand assets used</p>
+  </div>
+
+  <div class="scan-line"></div>
+
+  <!-- Export -->
+  <div class="export-bar">
+    <button class="export-btn pdf" id="btn-pdf" onclick="exportPDF()" disabled>
+      📄 Export PDF
+    </button>
+    <button class="export-btn csv" id="btn-csv" onclick="exportCSV()" disabled>
+      📊 Export CSV
+    </button>
+  </div>
+
+  <div class="timestamp" id="timestamp">Scanning...</div>
+
+  <!-- Public IP -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon icon-maroon">🌐</div>
+      <div class="card-title">Public IP &amp; Location</div>
+    </div>
+    <div class="data-grid" id="ip-section">
+      <div class="data-row"><span class="data-label">Public IPv4</span><span class="data-value ip loading" id="public-ip">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">Public IPv6</span><span class="data-value loading" id="public-ipv6">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">ISP / Org</span><span class="data-value loading" id="isp">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">ASN</span><span class="data-value loading" id="asn">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">City</span><span class="data-value loading" id="city">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">Region</span><span class="data-value loading" id="region">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">Country</span><span class="data-value loading" id="country">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">Timezone</span><span class="data-value loading" id="timezone">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">Coordinates</span><span class="data-value loading" id="coords">Detecting...</span></div>
+    </div>
+  </div>
+
+  <!-- Connection -->
+  <div class="card">
+    <div class="card-header"><div class="card-icon icon-gold">📡</div><div class="card-title">Connection Details</div></div>
+    <div class="data-grid">
+      <div class="data-row"><span class="data-label">Connection Type</span><span class="data-value" id="conn-type"><span class="badge badge-gold"><span class="status-dot"></span>Detecting</span></span></div>
+      <div class="data-row"><span class="data-label">Effective Type</span><span class="data-value" id="conn-effective">—</span></div>
+      <div class="data-row"><span class="data-label">Downlink Speed</span><span class="data-value" id="conn-downlink">—</span></div>
+      <div class="data-row"><span class="data-label">Round-Trip Time</span><span class="data-value" id="conn-rtt">—</span></div>
+      <div class="data-row"><span class="data-label">Data Saver</span><span class="data-value" id="conn-saver">—</span></div>
+      <div class="data-row"><span class="data-label">WebRTC Leak Check</span><span class="data-value loading" id="webrtc-status">Checking...</span></div>
+      <div class="data-row"><span class="data-label">WebRTC Local IPs</span><span class="data-value" id="webrtc-local">—</span></div>
+    </div>
+  </div>
+
+  <!-- Device -->
+  <div class="card">
+    <div class="card-header"><div class="card-icon icon-paper">💻</div><div class="card-title">Device &amp; Browser</div></div>
+    <div class="data-grid">
+      <div class="data-row"><span class="data-label">Browser</span><span class="data-value" id="browser">—</span></div>
+      <div class="data-row"><span class="data-label">Platform / OS</span><span class="data-value" id="platform">—</span></div>
+      <div class="data-row"><span class="data-label">Device Memory</span><span class="data-value" id="memory">—</span></div>
+      <div class="data-row"><span class="data-label">CPU Cores</span><span class="data-value" id="cores">—</span></div>
+      <div class="data-row"><span class="data-label">Screen</span><span class="data-value" id="screen">—</span></div>
+      <div class="data-row"><span class="data-label">Color Depth</span><span class="data-value" id="color-depth">—</span></div>
+      <div class="data-row"><span class="data-label">Pixel Ratio</span><span class="data-value" id="pixel-ratio">—</span></div>
+      <div class="data-row"><span class="data-label">Touch Support</span><span class="data-value" id="touch">—</span></div>
+      <div class="data-row"><span class="data-label">Language</span><span class="data-value" id="language">—</span></div>
+    </div>
+  </div>
+
+  <!-- NEW v2: Free-form data entry for scan -->
+  <div class="card free-form-card" id="free-form-card">
+    <div class="card-header">
+      <div class="card-icon icon-maroon">✏️</div>
+      <div class="card-title">Free-Form Scan Input <span style="font-size:0.75rem;font-weight:400;color:var(--text-dim);">· v2 feature</span></div>
+    </div>
+    <label for="free-form-input" class="free-form-label">Custom scan notes or additional context</label>
+    <p class="free-form-sub">Enter any observations, context, or additional data you want associated with this scan. This will be included in both CSV and PDF exports.</p>
+    <textarea id="free-form-input" class="free-form-textarea" placeholder="Example: Testing from Saint Joseph's University campus · Network segment: student residence · Additional notes..." aria-label="Free-form scan notes"></textarea>
+    <div class="info-hint" style="margin-top:10px;">
+      📝 Free-form input is optional. It will be included in the CSV export (row label: "Free Form Notes") and at the bottom of the PDF report.
+    </div>
+  </div>
+
+  <!-- Layer 3/4 -->
+  <div class="card">
+    <div class="card-header"><div class="card-icon icon-gold">🌐</div><div class="card-title">Layer 3/4 Network Diagnostic</div></div>
+    <div class="data-grid">
+      <div class="data-row"><span class="data-label">Link Status</span><span class="data-value" id="link-status"><span class="status-dot gray"></span>Checking...</span></div>
+      <div class="data-row"><span class="data-label">Network Type</span><span class="data-value" id="net-type">—</span></div>
+      <div class="data-row"><span class="data-label">Local IP (WebRTC)</span><span class="data-value" id="local-ip">Detecting...</span></div>
+      <div class="data-row"><span class="data-label">Default Gateway</span><span class="data-value" id="gateway-ip">Probing...</span></div>
+      <div class="data-row"><span class="data-label">DHCP Status</span><span class="data-value" id="dhcp-status">Checking...</span></div>
+      <div class="data-row"><span class="data-label">IP Assignment</span><span class="data-value" id="ip-assignment">—</span></div>
+      <div class="data-row"><span class="data-label">VPN / Proxy Detection</span><span class="data-value loading" id="vpn-detection">Analyzing...</span></div>
+      <div class="data-row"><span class="data-label">Timezone Consistency</span><span class="data-value" id="tz-check">Checking...</span></div>
+    </div>
+    <div style="margin-top:14px;">
+      <div style="font-size:0.78rem;color:var(--text-dim);margin-bottom:6px;">Connection Quality Estimate</div>
+      <div class="quality-bar"><div class="quality-fill" id="quality-fill" style="width:0%;background:var(--sju-maroon);"></div></div>
+      <div class="quality-label"><span id="quality-text">Gathering data...</span><span id="quality-score">—</span></div>
+    </div>
+  </div>
+
+  <!-- Security -->
+  <div class="card">
+    <div class="card-header"><div class="card-icon icon-paper">🔒</div><div class="card-title">Security &amp; Privacy</div></div>
+    <div class="data-grid">
+      <div class="data-row"><span class="data-label">HTTPS</span><span class="data-value" id="https">—</span></div>
+      <div class="data-row"><span class="data-label">DNS over HTTPS</span><span class="data-value" id="doh">—</span></div>
+      <div class="data-row"><span class="data-label">VPN / Proxy Hint</span><span class="data-value loading" id="vpn-hint">Analyzing...</span></div>
+      <div class="data-row"><span class="data-label">Tor Exit Node</span><span class="data-value loading" id="tor-check">Checking...</span></div>
+      <div class="data-row"><span class="data-label">Referrer Policy</span><span class="data-value" id="referrer">—</span></div>
+      <div class="data-row"><span class="data-label">Cookies Enabled</span><span class="data-value" id="cookies">—</span></div>
+      <div class="data-row"><span class="data-label">Do Not Track</span><span class="data-value" id="dnt">—</span></div>
+    </div>
+  </div>
+
+  <!-- DNS -->
+  <div class="card">
+    <div class="card-header"><div class="card-icon icon-paper">🔍</div><div class="card-title">DNS &amp; Resolution</div></div>
+    <div class="data-grid">
+      <div class="data-row"><span class="data-label">Reverse DNS</span><span class="data-value loading" id="rdns">Resolving...</span></div>
+      <div class="data-row"><span class="data-label">DNS Server (via DoH)</span><span class="data-value" id="dns-server">—</span></div>
+      <div class="data-row"><span class="data-label">DNS Resolution Time</span><span class="data-value loading" id="dns-time">Testing...</span></div>
+    </div>
+  </div>
+
+  <!-- Speed -->
+  <div class="card">
+    <div class="card-header"><div class="card-icon icon-maroon">⚡</div><div class="card-title">Speed Estimate</div></div>
+    <div class="speed-grid">
+      <div class="speed-box"><div class="speed-value" id="speed-down">—</div><div class="speed-label">Down (Mbps)</div></div>
+      <div class="speed-box"><div class="speed-value" id="speed-up">—</div><div class="speed-label">Up (Mbps)</div></div>
+      <div class="speed-box"><div class="speed-value" id="speed-latency">—</div><div class="speed-label">Latency (ms)</div></div>
+    </div>
+    <div class="info-hint" style="margin-top:16px;">
+      📊 Speed estimated by downloading a test file. Approximate result, depends on current network conditions.
+    </div>
+  </div>
+
+  <!-- Design reference note -->
+  <div class="design-note-banner">
+    <strong>Design Reference Note:</strong> This v2 uses a visual design inspired by the Saint Joseph's University Office of Marketing and Communications branding guide (visible elements: maroon header palette, serif-style headings, structured card layout, clean typography). No protected university logos, official fonts, or branded assets have been copied or redistributed. The design is applied here only as an external visual reference, not as official university branding.
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Built with 💜 by <strong>usagi-chan</strong> · NetCheck v2 · SJU-Inspired Design Reference</p>
+    <p style="margin-top:4px; font-size:0.74rem; color:var(--sju-stone);">No cookies · No tracking · No analytics · All data stays in your browser</p>
+  </div>
+</div>
+
+<!-- Original export script preserved with free-form data addition -->
+<script src="index-v2-export.js"></script>
+</body>
+</html>
