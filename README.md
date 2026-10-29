@@ -1,8 +1,10 @@
-# 🌸 usagi-chan NetCheck
+# 🌸 usagi-chan NetCheck v2
 
 A beautiful, privacy-focused network diagnostic tool that runs entirely in your browser.
 
-**[🌐 Launch NetCheck](https://usagihermes.github.io/netcheck)**
+**v2 Updates:** SJU-inspired design reference (maroon palette, serif headings, structured layout) — no protected university branding assets used. Includes a new free-form data input area for custom scan notes, integrated into CSV and PDF exports.
+
+**[🌐 Launch NetCheck](https://usagihermes.github.io/netcheck-v2)**
 
 ## What It Does
 
