@@ -397,10 +397,10 @@ body::before {
 
   <!-- Export -->
   <div class="export-bar">
-    <button class="export-btn pdf" id="btn-pdf" onclick="exportPDF()" disabled>
+    <button class="export-btn pdf" id="btn-pdf" onclick="exportPDF()">
       📄 Export PDF
     </button>
-    <button class="export-btn csv" id="btn-csv" onclick="exportCSV()" disabled>
+    <button class="export-btn csv" id="btn-csv" onclick="exportCSV()">
       📊 Export CSV
     </button>
   </div>
@@ -572,6 +572,30 @@ body::before {
     if (csvBtn) csvBtn.disabled = false;
   }
 
+  // Keep Blob URLs alive long enough for Safari and embedded mobile browsers
+  // to begin the download. Detached links and immediate URL revocation are
+  // unreliable in iOS Safari and Telegram's in-app browser.
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.rel = 'noopener';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+
+    try {
+      a.click();
+    } catch (error) {
+      window.open(url, '_blank', 'noopener');
+    }
+
+    setTimeout(() => {
+      a.remove();
+      URL.revokeObjectURL(url);
+    }, 2000);
+  }
+
   function setHTML(id, html) {
     const el = document.getElementById(id);
     if (el) el.innerHTML = html;
@@ -594,12 +618,7 @@ body::before {
     }
 
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `netcheck-${new Date().toISOString().slice(0,10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    downloadBlob(blob, `netcheck-${new Date().toISOString().slice(0,10)}.csv`);
   };
 
   // ── Export: PDF (real PDF, pure JS, no CDN) ──
@@ -680,12 +699,7 @@ body::before {
       w('trailer\n<< /Size 5 /Root 1 0 R >>\nstartxref\n' + xrefStart + '\n%%EOF\n');
 
       const blob = new Blob(parts, { type: 'application/pdf' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `netcheck-${now.toISOString().slice(0,10)}.pdf`;
-      a.click();
-      URL.revokeObjectURL(url);
+      downloadBlob(blob, `netcheck-${now.toISOString().slice(0,10)}.pdf`);
 
       btn.innerHTML = '✅ PDF downloaded!';
     } catch (err) {
